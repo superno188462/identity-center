@@ -42,6 +42,7 @@ app = FastAPI(
     title="Identity Center",
     description="跨项目统一身份与用户资料服务。",
     version="0.1.0",
+    root_path=os.getenv("APP_ROOT_PATH", "").rstrip("/"),
 )
 app.add_middleware(
     CORSMiddleware,

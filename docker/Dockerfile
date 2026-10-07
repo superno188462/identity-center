@@ -10,9 +10,13 @@ ENV UV_COMPILE_BYTECODE=1 \
 
 WORKDIR /app
 
+# Optional package index override (e.g. a regional mirror) for faster builds.
+ARG UV_INDEX_URL=
+
 # Install locked runtime dependencies in a separate layer for build caching.
 COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-dev --no-install-project
+RUN if [ -n "$UV_INDEX_URL" ]; then export UV_INDEX_URL; fi; \
+    uv sync --no-dev --no-install-project
 
 COPY main.py alembic.ini ./
 COPY services ./services

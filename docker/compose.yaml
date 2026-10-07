@@ -3,6 +3,8 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+      args:
+        UV_INDEX_URL: https://mirrors.tencent.com/pypi/simple
     image: identity-center:local
     container_name: identity-center
     restart: unless-stopped
