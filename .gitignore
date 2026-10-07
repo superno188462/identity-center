@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+.env.*
+!.env.example
+docker/identity-center.env
+
+# Local data and editor files
+*.db
+*.sqlite3
+.idea/
+.vscode/

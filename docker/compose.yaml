@@ -1,0 +1,19 @@
+services:
+  identity-center:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: identity-center:local
+    container_name: identity-center
+    restart: unless-stopped
+    env_file:
+      - identity-center.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8002
+    extra_hosts:
+      # Lets the container reach PostgreSQL installed directly on the Linux host.
+      - "host.docker.internal:host-gateway"
+    ports:
+      # Nginx on the host can proxy to 127.0.0.1:8002.
+      - "127.0.0.1:8002:8002"
