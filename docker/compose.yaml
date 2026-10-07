@@ -17,3 +17,10 @@ services:
     ports:
       # Nginx on the host can proxy to 127.0.0.1:8002.
       - "127.0.0.1:8002:8002"
+    networks:
+      # Shared with the unified nginx1.30 container for container-name proxying.
+      - app_net
+
+networks:
+  app_net:
+    external: true
